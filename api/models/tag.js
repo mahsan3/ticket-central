@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
 
     Tag.associate = (models) => {
 
+        Tag.belongsToMany(models.ticket, {
+            through: 'ticket_has_tag'
+        });
+
     };
 
     return Tag;

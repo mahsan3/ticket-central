@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
 
     Status.associate = (models) => {
 
+        Status.hasOne(models.ticket);
+
     };
 
     return Status;

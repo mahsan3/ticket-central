@@ -11,6 +11,20 @@ module.exports = (sequelize, DataTypes) => {
 
     Ticket.associate = (models) => {
 
+        Ticket.belongsTo(models.status);
+
+        Ticket.belongsTo(models.user, {
+            as: 'ticker_creator'
+        });
+
+        Ticket.belongsTo(models.user, {
+            as: 'ticker_assigned_to'
+        });
+
+        Ticket.belongsToMany(models.tag, {
+            through: 'ticket_has_tag'
+        });
+
     };
 
     return Ticket;

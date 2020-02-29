@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
 
     Role.associate = (models) => {
 
+        Role.hasOne(models.user);
+
     };
 
     return Role;

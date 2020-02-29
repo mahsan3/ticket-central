@@ -5,7 +5,7 @@ const models = require('./api/models');
 
 app.use('/', appRoutes);
 
-models.sequelize.sync().then(() => {
+models.sequelize.sync({alter: true}).then(() => {
     console.log('[X] Sequelize Successfully synced.');
 }).catch(err => {
     throw new Error(err);
