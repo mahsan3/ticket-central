@@ -2,7 +2,7 @@
 const routes = require('express').Router();
 const ticketRoutes = require('./ticket.routes');
 
-routes.get('/heart-beat', (req, res) => {
+routes.get('/heartbeat', (req, res) => {
     res.status(200).json({ message: 'API is up.' });
 });
 
