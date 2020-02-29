@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
         res.json({
             success: true,
             error: false,
-            message: '',
+            message: `Ticket with id ${req.params.ticketId} was deleted.`,
             data: {
                 deletedCount
             }
