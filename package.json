@@ -1,0 +1,22 @@
+{
+  "name": "ticket-central",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahsan3/ticket-central.git"
+  },
+  "author": "Muhammad Ahsan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mahsan3/ticket-central/issues"
+  },
+  "homepage": "https://github.com/mahsan3/ticket-central#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
