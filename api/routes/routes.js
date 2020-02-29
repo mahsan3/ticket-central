@@ -6,6 +6,6 @@ routes.get('/heartbeat', (req, res) => {
     res.status(200).json({ message: 'API is up.' });
 });
 
-routes.use('/tickets', ticketRoutes);
+routes.use('/ticket', ticketRoutes);
 
 module.exports = routes;
