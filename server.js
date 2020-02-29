@@ -14,7 +14,7 @@ models.sequelize.sync({alter: true}).then(() => {
     throw new Error(err);
 });
 
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '3001';
 const ip   = process.env.NODE_IP || 'localhost';
 
 app.listen(port, () => {
