@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         Ticket.belongsTo(models.status);
 
         Ticket.belongsTo(models.user, {
-            as: 'ticker_creator'
+            as: 'ticket_creator'
         });
 
         Ticket.belongsTo(models.user, {
-            as: 'ticker_assigned_to'
+            as: 'ticket_assigned_to'
         });
 
         Ticket.belongsToMany(models.tag, {

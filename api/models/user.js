@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     User.associate = (models) => {
 
         User.hasOne(models.ticket, {
-            as: 'ticker_creator'
+            as: 'ticket_creator'
         });
 
         User.hasOne(models.ticket, {
-            as: 'ticker_assigned_to'
+            as: 'ticket_assigned_to'
         });
 
         User.belongsTo(models.role);
