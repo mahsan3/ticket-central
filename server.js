@@ -27,7 +27,7 @@ const checkJwt = jwt({
     algorithms: ['RS256']
 });
 
-app.use('/', appRoutes);
+app.use('/api', appRoutes);
 
 models.sequelize.sync({alter: true}).then(() => {
     console.log('[X] Sequelize Successfully synced.');
