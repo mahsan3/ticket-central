@@ -5,6 +5,7 @@ export const EDIT_TICKET = 'EDIT_TICKET';
 export const LOAD_TICKET_OPTION_DATA = 'LOAD_TICKET_OPTION_DATA';
 export const LOAD_TICKET_OPTION_DATA_SUCCESS = 'LOAD_TICKET_OPTION_DATA_SUCCESS';
 export const LOAD_TICKET_OPTION_DATA_FAIL = 'LOAD_TICKET_OPTION_DATA_FAIL';
+export const SET_JWT = 'SET_JWT';
 
 /**
  * =====================================================
@@ -55,3 +56,13 @@ export const loadTicketOptionDataSuccess = (tags, status, users) => ({
 });
 
 // TODO: skipping fail action for now...
+
+/**
+ * =====================================================
+ *                 STORE JWT
+ * =====================================================
+ */
+export const setJWT = jwt => ({
+    type: SET_JWT,
+    payload: jwt
+});

@@ -2,7 +2,7 @@ import {
     EDIT_TICKET,
     LOAD_ALL_TICKETS,
     LOAD_ALL_TICKETS_FAIL,
-    LOAD_ALL_TICKETS_SUCCESS, LOAD_TICKET_OPTION_DATA, LOAD_TICKET_OPTION_DATA_SUCCESS
+    LOAD_ALL_TICKETS_SUCCESS, LOAD_TICKET_OPTION_DATA, LOAD_TICKET_OPTION_DATA_SUCCESS, SET_JWT
 } from "../actions/ticket.actions";
 
 const initialState = {
@@ -11,7 +11,8 @@ const initialState = {
     currentlyEditing: null,
     tags: [],
     users: [],
-    status: []
+    status: [],
+    jwt: null
 };
 
 export default function ticketReducer(state = initialState, action) {
@@ -53,6 +54,12 @@ export default function ticketReducer(state = initialState, action) {
                 status: action.payload.status,
                 users: action.payload.users,
                 isLoading: false
+            };
+
+        case SET_JWT:
+            return {
+                ...state,
+                jwt: action.payload
             };
 
         default:
