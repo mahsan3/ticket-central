@@ -27,6 +27,7 @@ ReactDOM.render(
             domain={process.env.REACT_APP_AUTH0_DOMAIN}
             client_id={process.env.REACT_APP_AUTH0_CLIENTID}
             redirect_uri={process.env.REACT_APP_AUTH0_CALLBACK}
+            audience={process.env.REACT_APP_AUTH0_AUDIENCE}
             onRedirectCallback={onRedirectCallback}>
 
             <App />
