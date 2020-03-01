@@ -7,17 +7,20 @@ import {
 } from "../actions/ticket.actions";
 import {ofType} from "redux-observable";
 import {of} from 'rxjs';
-import {map, mergeMap, catchError} from "rxjs/operators";
+import {map, mergeMap, catchError, tap} from "rxjs/operators";
 import { ajax } from 'rxjs/ajax';
 import history from "../../utils/history";
 
-export const loadTicketsEpic = action$ => action$.pipe(
+export const loadTicketsEpic = (action$, state$) => action$.pipe(
     ofType(LOAD_ALL_TICKETS),
+    tap(() => {
+        console.log(state$.value.ticketReducer.jwt)
+    }),
     mergeMap(action => ajax({
             url: '/api/ticket/all',
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${action.payload}`
+                Authorization: `Bearer ${state$.value.ticketReducer.jwt}`
             }
         }).pipe(
             map(response => {
@@ -30,17 +33,21 @@ export const loadTicketsEpic = action$ => action$.pipe(
     )
 );
 
-export const loadTicketOptionsEpic = action$ => action$.pipe(
+export const loadTicketOptionsEpic = (action$, state$) => action$.pipe(
     ofType(LOAD_TICKET_OPTION_DATA),
     mergeMap(action => ajax({
             url: '/api/ticket/optional-data',
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${action.payload}`
+                Authorization: `Bearer ${state$.value.ticketReducer.jwt}`
             }
         }).pipe(
         map(response => {
-            return loadTicketOptionDataSuccess(response.response.data);
+            return loadTicketOptionDataSuccess(
+                response.response.data.tags,
+                response.response.data.status,
+                response.response.data.users
+            );
         }),
         catchError(err => {
             return of("uh oh - spaghettios!");
@@ -49,6 +56,7 @@ export const loadTicketOptionsEpic = action$ => action$.pipe(
     )
 );
 
+// Not using
 export const editTicketEpic = action$ => action$.pipe(
     ofType(EDIT_TICKET),
     mergeMap(action => {
