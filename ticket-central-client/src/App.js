@@ -3,7 +3,6 @@ import './App.css';
 import NavContainer from "./Navigation/containers/NavContainer";
 import {BrowserRouter, Route} from "react-router-dom";
 import HomeContainer from "./Home/containers/HomeContainer";
-import Callback from "./Callback";
 
 function App() {
   return (
