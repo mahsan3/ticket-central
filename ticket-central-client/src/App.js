@@ -14,7 +14,6 @@ function App() {
         <BrowserRouter>
 
             <Route path="/" component={HomeContainer} />
-            <Route path="/callback" component={Callback} />
 
         </BrowserRouter>
 
