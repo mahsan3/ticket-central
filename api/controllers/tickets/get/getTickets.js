@@ -8,11 +8,14 @@ module.exports = async (req, res, next) => {
             include: [{
                 model: models.user,
                 as: 'ticket_creator',
-                attributes: ['name']
+                attributes: ['name', 'email'],
             }, {
                 model: models.user,
                 as: 'ticket_assigned_to',
-                attributes: ['name']
+                attributes: ['name', 'email'],
+                where: {
+                    email: req.user['http://localhost:3001.com/email']
+                }
             }, {
                 model: models.status,
                 attributes: ['name']
