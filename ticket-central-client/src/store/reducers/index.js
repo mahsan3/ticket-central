@@ -1,10 +1,12 @@
 import {combineReducers} from "redux";
 import { combineEpics } from 'redux-observable';
-import {loadTickets} from '../epics/ticket.epic';
+import {loadTicketsEpic, editTicketEpic} from '../epics/ticket.epic';
 import ticketReducer from "./ticket.reducer";
 
 export const rootEpic = combineEpics(
-    loadTickets
+    loadTicketsEpic,
+    loadTicketOptionsEpic,
+    // editTicketEpic
 );
 
 export const rootReducer = combineReducers({
