@@ -3,7 +3,7 @@ import {useAuth0} from "../../Auth/Auth";
 
 function NavContainer(props) {
 
-        const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,8 +25,13 @@ function NavContainer(props) {
                             <a className="nav-link" href="#" onClick={() => loginWithRedirect({})}>Login</a>
                         </li>
                     )}
-                    {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-
+                    {
+                        isAuthenticated && (
+                            <li className="nav-item active">
+                                <a className="nav-link" href="#" onClick={() => logout()}>Logout</a>
+                            </li>
+                        )
+                    }
 
                     <li className="nav-item">
                         <a className="nav-link" href="#"></a>
