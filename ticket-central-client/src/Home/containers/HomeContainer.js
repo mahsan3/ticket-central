@@ -3,7 +3,7 @@ import {useAuth0} from "../../Auth/Auth";
 import TicketCard from "../components/TicketCard";
 import Loading from "../../common/Loading";
 import {connect} from "react-redux";
-import {loadAllTickets} from "../../store/actions/ticket.actions";
+import {editTicket, loadAllTickets} from "../../store/actions/ticket.actions";
 
 function HomeContainer(props) {
 
@@ -32,6 +32,12 @@ function HomeContainer(props) {
 
     }, [loading]);
 
+    const editTicket = (id) => {
+        props.editTicket(id);
+        props.history.push(`/edit/${id}`);
+        console.log(`Edit ${id}`);
+    };
+
     if (loading || !user) {
         return <Loading />;
     }
@@ -39,7 +45,7 @@ function HomeContainer(props) {
     return (
         <>
             <h1>My Tickets</h1>
-            {props.tickets.map(t => <TicketCard ticket={t} key={t.id}/>)}
+            {props.tickets.map(t => <TicketCard ticket={t} key={t.id} edit={editTicket}/>)}
         </>
     );
 }
@@ -54,7 +60,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 
     return {
-        loadTickets: token => dispatch(loadAllTickets(token))
+        loadTickets: token => dispatch(loadAllTickets(token)),
+        editTicket: id => dispatch(editTicket(id))
     };
 
 }
