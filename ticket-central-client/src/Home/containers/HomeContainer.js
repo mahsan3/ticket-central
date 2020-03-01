@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {useAuth0} from "../../Auth/Auth";
 import TicketCard from "../components/TicketCard";
 import Loading from "../../common/Loading";
+import {connect} from "react-redux";
+import {loadAllTickets} from "../../store/actions/ticket.actions";
 
 function HomeContainer(props) {
 
     const { loading, user, getTokenSilently } = useAuth0();
-    const [tickets, setTickets] = useState([]);
 
     useEffect(() => {
 
@@ -19,19 +20,7 @@ function HomeContainer(props) {
 
                 const token = await getTokenSilently();
                 console.log(token);
-                const response = await fetch("/api/ticket/all", {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-
-                const responseData = await response.json();
-
-                if(responseData.hasOwnProperty('data') && responseData.data.tickets) {
-                    setTickets(responseData.data.tickets);
-                }else {
-                    throw new Error('API Error: Data or tickets missing from response')
-                }
+                props.loadTickets(token);
 
             }catch (err) {
                 console.error(err);
@@ -50,9 +39,26 @@ function HomeContainer(props) {
     return (
         <>
             <h1>My Tickets</h1>
-            {tickets.map(t => <TicketCard ticket={t} key={t.id}/>)}
+            {props.tickets.map(t => <TicketCard ticket={t} key={t.id}/>)}
         </>
     );
 }
+
+// Wire up this component to the store
+function mapStateToProps(state) {
+    return {
+        tickets: state.ticketReducer.tickets
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+
+    return {
+        loadTickets: token => dispatch(loadAllTickets(token))
+    };
+
+}
+
+HomeContainer = connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
 
 export default HomeContainer;
