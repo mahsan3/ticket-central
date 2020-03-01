@@ -1,13 +1,13 @@
 import React from 'react';
 import Moment from 'react-moment';
 
-function TicketCard({ticket}) {
+function TicketCard({ticket, edit}) {
     return (
         <div className="card m-2">
             <div className="card-body">
                 <div className="d-flex justify-content-between">
                     <h5 className="card-title">{ticket.title}</h5>
-                    <button type="button" className="btn btn-outline-primary">
+                    <button type="button" className="btn btn-outline-primary" onClick={() => edit(ticket.id)}>
                         <i className="far fa-edit"></i>
                     </button>
                 </div>
