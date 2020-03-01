@@ -3,7 +3,7 @@ import {useAuth0} from "../../Auth/Auth";
 import TicketCard from "../components/TicketCard";
 import Loading from "../../common/Loading";
 import {connect} from "react-redux";
-import {editTicket, loadAllTickets} from "../../store/actions/ticket.actions";
+import {editTicket, loadAllTickets, setJWT} from "../../store/actions/ticket.actions";
 
 function HomeContainer(props) {
 
@@ -20,7 +20,8 @@ function HomeContainer(props) {
 
                 const token = await getTokenSilently();
                 console.log(token);
-                props.loadTickets(token);
+                props.setJWT(token);
+                props.loadTickets();
 
             }catch (err) {
                 console.error(err);
@@ -60,8 +61,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 
     return {
-        loadTickets: token => dispatch(loadAllTickets(token)),
-        editTicket: id => dispatch(editTicket(id))
+        loadTickets: () => dispatch(loadAllTickets()),
+        editTicket: id => dispatch(editTicket(id)),
+        setJWT: token => dispatch(setJWT(token))
     };
 
 }
