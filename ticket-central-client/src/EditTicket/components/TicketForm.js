@@ -5,8 +5,8 @@ function TicketForm(props) {
 
     const [title, setTitle] = useState(props.ticketData.title);
     const [description, setDescription] = useState(props.ticketData.description);
-    const [status, setStatus] = useState(props.ticketData.status.name);
-    const [assignedTo, setAssignedTo] = useState(props.ticketData.ticket_assigned_to.name);
+    const [status, setStatus] = useState(props.ticketData.status.id);
+    const [assignedTo, setAssignedTo] = useState(props.ticketData.ticket_assigned_to.id);
     const [tags, setTags] = useState(props.ticketData.tags);
 
     useEffect(() => {
@@ -62,7 +62,7 @@ function TicketForm(props) {
                     {props.status.map(s => {
                         return <option
                                     value={s.id}
-                                    selected={s.name === status}
+                                    selected={s.id === status}
                                     key={s.id}>
                                     {s.name}
                                 </option>;
@@ -77,7 +77,7 @@ function TicketForm(props) {
                     {props.users.map(u => {
                         return <option
                             value={u.id}
-                            selected={u.name === assignedTo}
+                            selected={u.id === assignedTo}
                             key={u.id}>
                             {u.name} ({u.email})
                         </option>;
