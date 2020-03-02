@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import Loading from "../../common/Loading";
-import {loadTicketOptionData} from "../../store/actions/ticket.actions";
+import {loadTicketOptionData, updateTicket} from "../../store/actions/ticket.actions";
 import TicketForm from "../components/TicketForm";
 
 function EditTicket(props) {
@@ -13,6 +13,10 @@ function EditTicket(props) {
 
     const handleUpdate = (updatedTicket) => {
         console.log('Updated ticket is...', updatedTicket);
+        props.updateTicker({
+            ticketId: props.currentTicket.id,
+            ticket: updatedTicket
+        });
     };
 
 
@@ -61,7 +65,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 
     return {
-        loadOptionalData: () => dispatch(loadTicketOptionData())
+        loadOptionalData: () => dispatch(loadTicketOptionData()),
+        updateTicker: updatedTicket => dispatch(updateTicket(updatedTicket))
     };
 
 }
