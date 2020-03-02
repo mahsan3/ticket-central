@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import Loading from "../../common/Loading";
-import {loadTicketOptionData, updateTicket} from "../../store/actions/ticket.actions";
+import {deleteTicket, loadTicketOptionData, updateTicket} from "../../store/actions/ticket.actions";
 import TicketForm from "../components/TicketForm";
 import { useHistory } from "react-router-dom";
 
@@ -10,15 +10,24 @@ function EditTicket(props) {
 
     useEffect(() => {
         props.loadOptionalData();
-        console.log(props.currentTicket)
+        console.log(props.currentTicket);
+
+        return () => {
+            // TODO: reset edit state
+        };
+
     }, []);
 
     const handleUpdate = (updatedTicket) => {
-        console.log('Updated ticket is...', updatedTicket);
         props.updateTicker({
             ticketId: props.currentTicket.id,
             ticket: updatedTicket
         });
+        history.push('/');
+    };
+
+    const handleDelete = () => {
+        props.deleteTicket(props.currentTicket.id);
         history.push('/');
     };
 
@@ -40,12 +49,12 @@ function EditTicket(props) {
 
                     <TicketForm
                         handleSubmit={handleUpdate}
+                        deleteTicket={handleDelete}
                         ticketData={props.currentTicket}
                         tags={props.tags}
                         users={props.users}
                         status={props.status}
                     />
-
 
                 </div>
             </div>
@@ -69,7 +78,8 @@ function mapDispatchToProps(dispatch) {
 
     return {
         loadOptionalData: () => dispatch(loadTicketOptionData()),
-        updateTicker: updatedTicket => dispatch(updateTicket(updatedTicket))
+        updateTicker: updatedTicket => dispatch(updateTicket(updatedTicket)),
+        deleteTicket: id => dispatch(deleteTicket(id))
     };
 
 }
