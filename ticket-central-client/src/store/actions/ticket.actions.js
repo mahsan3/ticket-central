@@ -6,6 +6,8 @@ export const LOAD_TICKET_OPTION_DATA = 'LOAD_TICKET_OPTION_DATA';
 export const LOAD_TICKET_OPTION_DATA_SUCCESS = 'LOAD_TICKET_OPTION_DATA_SUCCESS';
 export const LOAD_TICKET_OPTION_DATA_FAIL = 'LOAD_TICKET_OPTION_DATA_FAIL';
 export const SET_JWT = 'SET_JWT';
+export const UPDATE_TICKET = 'UPDATE_TICKET';
+export const UPDATE_TICKET_SUCCESS = 'UPDATE_TICKET_SUCCESS';
 
 /**
  * =====================================================
@@ -59,10 +61,25 @@ export const loadTicketOptionDataSuccess = (tags, status, users) => ({
 
 /**
  * =====================================================
- *                 STORE JWT
+ *                      STORE JWT
  * =====================================================
  */
 export const setJWT = jwt => ({
     type: SET_JWT,
     payload: jwt
+});
+
+/**
+ * =====================================================
+*                      UPDATE TICKET
+ * =====================================================
+ */
+export const updateTicket = ticket => ({
+    type: UPDATE_TICKET,
+    payload: ticket
+});
+
+export const updateTicketSuccess = ticket => ({
+    type: UPDATE_TICKET_SUCCESS,
+    payload: ticket
 });
