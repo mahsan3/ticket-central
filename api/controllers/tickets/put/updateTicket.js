@@ -28,8 +28,8 @@ module.exports = async (req, res, next) => {
 
         await ticket.setStatus(req.body.status);
         await ticket.setTicket_assigned_to(req.body.assignedTo);
-        await ticket.setTicket_creator(req.body.creator);
-        await ticket.setTags(req.body.tags);
+        // await ticket.setTicket_creator(req.body.creator); // There shouldn't be any need to update this
+        await ticket.setTags(req.body.tags.split(','));
 
 
         res.json({
