@@ -11,9 +11,10 @@ function EditTicket(props) {
         console.log(props.currentTicket)
     }, []);
 
-    const handleUpdate = () => {};
-    const removeTicket = () => {};
-    const saveTicket = () => {};
+    const handleUpdate = (updatedTicket) => {
+        console.log('Updated ticket is...', updatedTicket);
+    };
+
 
     if(props.isLoading) {
         return (
@@ -38,10 +39,7 @@ function EditTicket(props) {
                         status={props.status}
                     />
 
-                    <div className="d-flex justify-content-between">
-                        <button type="button" className="btn btn-danger" onClick={() => removeTicket()}>Delete</button>
-                        <button type="button" className="btn btn-success" onClick={() => saveTicket()}>Save</button>
-                    </div>
+
                 </div>
             </div>
         );
