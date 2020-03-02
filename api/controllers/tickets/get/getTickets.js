@@ -21,14 +21,12 @@ module.exports = async (req, res, next) => {
                 attributes: ['name']
             }, {
                 model: models.tag,
-                attributes: ['name'],
+                attributes: ['id', 'name'],
                 through: {
                     attributes: [] // don't need any attributes from join table
                 }
             }]
         });
-
-        console.log(tickets);
 
         res.json({
             success: true,
