@@ -8,6 +8,8 @@ export const LOAD_TICKET_OPTION_DATA_FAIL = 'LOAD_TICKET_OPTION_DATA_FAIL';
 export const SET_JWT = 'SET_JWT';
 export const UPDATE_TICKET = 'UPDATE_TICKET';
 export const UPDATE_TICKET_SUCCESS = 'UPDATE_TICKET_SUCCESS';
+export const DELETE_TICKET = 'DELETE_TICKET';
+export const DELETE_TICKET_SUCCESS = 'DELETE_TICKET_SUCCESS';
 
 /**
  * =====================================================
@@ -71,15 +73,34 @@ export const setJWT = jwt => ({
 
 /**
  * =====================================================
-*                      UPDATE TICKET
+ *                      UPDATE TICKET
  * =====================================================
  */
-export const updateTicket = ticket => ({
+export const updateTicket = ticketId => ({
     type: UPDATE_TICKET,
-    payload: ticket
+    payload: ticketId
 });
 
-export const updateTicketSuccess = ticket => ({
+export const updateTicketSuccess = ticketId => ({
     type: UPDATE_TICKET_SUCCESS,
-    payload: ticket
+    payload: ticketId
 });
+
+// TODO: skipping fail action for now...
+
+/**
+ * =====================================================
+ *                      UPDATE TICKET
+ * =====================================================
+ */
+export const deleteTicket = id => ({
+    type: DELETE_TICKET,
+    payload: id
+});
+
+export const deleteTicketSuccess = id => ({
+    type: DELETE_TICKET_SUCCESS,
+    payload: id
+});
+
+// TODO: skipping fail action for now...
