@@ -12,13 +12,13 @@ module.exports = async (req, res, next) => {
             }, {
                 model: models.user,
                 as: 'ticket_assigned_to',
-                attributes: ['name', 'email'],
+                attributes: ['id', 'name', 'email'],
                 where: {
                     email: req.user['http://localhost:3001.com/email']
                 }
             }, {
                 model: models.status,
-                attributes: ['name']
+                attributes: ['id', 'name']
             }, {
                 model: models.tag,
                 attributes: ['id', 'name'],
