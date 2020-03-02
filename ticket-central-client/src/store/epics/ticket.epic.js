@@ -106,6 +106,7 @@ export const deleteTicketEpic = (action$, state$) => action$.pipe(
 
 export const createTicketEpic = (action$, state$) => action$.pipe(
     ofType(CREATE_TICKET),
+    tap(() => toast.info('Creating...')),
     mergeMap(action => ajax({
             url: `/api/ticket/new`,
             method: 'POST',
