@@ -1,4 +1,5 @@
 import {
+    CREATE_TICKET, createTicketSuccess,
     DELETE_TICKET, deleteTicketSuccess,
     EDIT_TICKET,
     LOAD_ALL_TICKETS, LOAD_TICKET_OPTION_DATA,
@@ -95,6 +96,29 @@ export const deleteTicketEpic = (action$, state$) => action$.pipe(
             map(response => {
                 toast.success('Delete successful!');
                 return deleteTicketSuccess(action.payload);
+            }),
+            catchError(err => {
+                return of("uh oh - spaghettios!");
+            })
+        )
+    )
+);
+
+export const createTicketEpic = (action$, state$) => action$.pipe(
+    ofType(CREATE_TICKET),
+    mergeMap(action => ajax({
+            url: `/api/ticket/new`,
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${state$.value.ticketReducer.jwt}`
+            },
+            body: {
+                ...action.payload
+            }
+        }).pipe(
+            map(response => {
+                toast.success('Ticket Created!');
+                return createTicketSuccess(action.payload);
             }),
             catchError(err => {
                 return of("uh oh - spaghettios!");
