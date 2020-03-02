@@ -2,12 +2,18 @@ import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import Loading from "../../common/Loading";
 import {loadTicketOptionData} from "../../store/actions/ticket.actions";
+import TicketForm from "../components/TicketForm";
 
 function EditTicket(props) {
 
     useEffect(() => {
         props.loadOptionalData();
+        console.log(props.currentTicket)
     }, []);
+
+    const handleUpdate = () => {};
+    const removeTicket = () => {};
+    const saveTicket = () => {};
 
     if(props.isLoading) {
         return (
@@ -22,10 +28,20 @@ function EditTicket(props) {
     }else {
         return (
             <div className="row">
-                <div className="col">
+                <div className="col m-2">
 
-                    <h1>Finished loading</h1>
+                    <TicketForm
+                        handleSubmit={handleUpdate}
+                        ticketData={props.currentTicket}
+                        tags={props.tags}
+                        users={props.users}
+                        status={props.status}
+                    />
 
+                    <div className="d-flex justify-content-between">
+                        <button type="button" className="btn btn-danger" onClick={() => removeTicket()}>Delete</button>
+                        <button type="button" className="btn btn-success" onClick={() => saveTicket()}>Save</button>
+                    </div>
                 </div>
             </div>
         );
