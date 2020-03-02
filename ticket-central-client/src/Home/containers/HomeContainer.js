@@ -39,7 +39,9 @@ function HomeContainer(props) {
         console.log(`Edit ${id}`);
     };
 
-    if (loading || !user) {
+    if (!loading && !user) {
+        return <h3>Please login to continue</h3>
+    }else if(loading || props.isLoading) {
         return <Loading />;
     }
 
@@ -57,7 +59,8 @@ function HomeContainer(props) {
 // Wire up this component to the store
 function mapStateToProps(state) {
     return {
-        tickets: state.ticketReducer.tickets
+        tickets: state.ticketReducer.tickets,
+        isLoading: state.ticketReducer.isLoading
     }
 }
 
