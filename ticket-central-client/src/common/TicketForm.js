@@ -57,12 +57,11 @@ function TicketForm(props) {
 
             <div className="form-group">
                 <label>Status</label>
-                <select className="form-control" onChange={e => setStatus(e.target.value)}>
+                <select className="form-control" onChange={e => setStatus(e.target.value)} value={status}>
                     <option>Default select</option>
                     {props.status.map(s => {
                         return <option
                                     value={s.id}
-                                    selected={s.id === status}
                                     key={s.id}>
                                     {s.name}
                                 </option>;
@@ -72,12 +71,11 @@ function TicketForm(props) {
 
             <div className="form-group">
                 <label>Assigned To</label>
-                <select className="form-control" onChange={e => setAssignedTo(e.target.value)}>
+                <select className="form-control" onChange={e => setAssignedTo(e.target.value)} value={assignedTo}>
                     <option>Default select</option>
                     {props.users.map(u => {
                         return <option
                             value={u.id}
-                            selected={u.id === assignedTo}
                             key={u.id}>
                             {u.name} ({u.email})
                         </option>;
@@ -97,7 +95,8 @@ function TicketForm(props) {
             </div>
 
             <div className="d-flex justify-content-between">
-                <button type="button" className="btn btn-danger" onClick={() => removeTicket()}>Delete</button>
+                {props.showDelete ? <button type="button" className="btn btn-danger" onClick={() => removeTicket()}>Delete</button> : null}
+
                 <button type="button" className="btn btn-success" onClick={() => saveTicket()}>Save</button>
             </div>
         </form>
