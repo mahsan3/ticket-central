@@ -10,6 +10,7 @@ import {of} from 'rxjs';
 import {map, mergeMap, catchError, tap} from "rxjs/operators";
 import { ajax } from 'rxjs/ajax';
 import history from "../../utils/history";
+import { toast } from 'react-toastify';
 
 export const loadTicketsEpic = (action$, state$) => action$.pipe(
     ofType(LOAD_ALL_TICKETS),
@@ -58,6 +59,7 @@ export const loadTicketOptionsEpic = (action$, state$) => action$.pipe(
 
 export const updateTicketEpic = (action$, state$) => action$.pipe(
     ofType(UPDATE_TICKET),
+    tap(() => toast.info('Saving...')),
     mergeMap(action => ajax({
             url: `/api/ticket/${action.payload.ticketId}`,
             method: 'PUT',
@@ -69,6 +71,7 @@ export const updateTicketEpic = (action$, state$) => action$.pipe(
             }
         }).pipe(
             map(response => {
+                toast.success('Save successful!');
                 return updateTicketSuccess(action.payload.ticket);
             }),
             catchError(err => {
