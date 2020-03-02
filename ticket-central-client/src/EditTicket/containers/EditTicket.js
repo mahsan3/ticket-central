@@ -3,8 +3,10 @@ import {connect} from "react-redux";
 import Loading from "../../common/Loading";
 import {loadTicketOptionData, updateTicket} from "../../store/actions/ticket.actions";
 import TicketForm from "../components/TicketForm";
+import { useHistory } from "react-router-dom";
 
 function EditTicket(props) {
+    let history = useHistory();
 
     useEffect(() => {
         props.loadOptionalData();
@@ -17,6 +19,7 @@ function EditTicket(props) {
             ticketId: props.currentTicket.id,
             ticket: updatedTicket
         });
+        history.push('/');
     };
 
 
