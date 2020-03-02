@@ -10,6 +10,8 @@ export const UPDATE_TICKET = 'UPDATE_TICKET';
 export const UPDATE_TICKET_SUCCESS = 'UPDATE_TICKET_SUCCESS';
 export const DELETE_TICKET = 'DELETE_TICKET';
 export const DELETE_TICKET_SUCCESS = 'DELETE_TICKET_SUCCESS';
+export const CREATE_TICKET = 'CREATE_TICKET';
+export const CREATE_TICKET_SUCCESS = 'CREATE_TICKET_SUCCESS';
 
 /**
  * =====================================================
@@ -101,6 +103,23 @@ export const deleteTicket = id => ({
 export const deleteTicketSuccess = id => ({
     type: DELETE_TICKET_SUCCESS,
     payload: id
+});
+
+// TODO: skipping fail action for now...
+
+/**
+ * =====================================================
+ *                      CREATE TICKET
+ * =====================================================
+ */
+export const createTicket = ticket => ({
+    type: CREATE_TICKET,
+    payload: ticket
+});
+
+export const createTicketSuccess = ticket => ({
+    type: CREATE_TICKET_SUCCESS,
+    payload: ticket
 });
 
 // TODO: skipping fail action for now...
