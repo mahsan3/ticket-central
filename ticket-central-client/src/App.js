@@ -6,6 +6,7 @@ import HomeContainer from "./Home/containers/HomeContainer";
 import EditTicket from "./EditTicket/containers/EditTicket";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import NewTicket from "./NewTicket/containers/NewTicket";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
 
         <Route exact path="/" component={HomeContainer} />
         <Route exact path="/edit/:id" component={EditTicket} />
+        <Route exact path="/new-ticket" component={NewTicket} />
 
     </BrowserRouter>
 
