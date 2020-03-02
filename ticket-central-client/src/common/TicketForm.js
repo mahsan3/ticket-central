@@ -14,12 +14,10 @@ function TicketForm(props) {
     }, []);
 
     const onSelect = (selectedList, selectedItem) => {
-        console.log(selectedList, selectedItem);
         setTags(selectedList);
     };
 
     const onRemove = (selectedList, removedItem) => {
-        console.log(selectedList, removedItem);
         setTags(selectedList);
     };
 
