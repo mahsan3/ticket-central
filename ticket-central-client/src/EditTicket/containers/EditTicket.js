@@ -54,6 +54,7 @@ function EditTicket(props) {
                         tags={props.tags}
                         users={props.users}
                         status={props.status}
+                        showDelete={true}
                     />
 
                 </div>

@@ -33,7 +33,7 @@ function NewTicket(props) {
 
     return (
         <div className="row">
-            <div className="col">
+            <div className="col m-2">
 
                 <TicketForm
                     handleSubmit={createTicket}
@@ -41,6 +41,7 @@ function NewTicket(props) {
                     tags={props.tags}
                     users={props.users}
                     status={props.status}
+                    showDelete={false}
                 />
 
             </div>
