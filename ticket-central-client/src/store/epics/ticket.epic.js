@@ -3,7 +3,7 @@ import {
     LOAD_ALL_TICKETS, LOAD_TICKET_OPTION_DATA,
     LOAD_TICKET_OPTION_DATA_SUCCESS,
     loadAllTicketsFail,
-    loadAllTicketsSuccess, loadTicketOptionDataSuccess
+    loadAllTicketsSuccess, loadTicketOptionDataSuccess, UPDATE_TICKET, updateTicketSuccess
 } from "../actions/ticket.actions";
 import {ofType} from "redux-observable";
 import {of} from 'rxjs';
@@ -52,6 +52,28 @@ export const loadTicketOptionsEpic = (action$, state$) => action$.pipe(
         catchError(err => {
             return of("uh oh - spaghettios!");
         })
+        )
+    )
+);
+
+export const updateTicketEpic = (action$, state$) => action$.pipe(
+    ofType(UPDATE_TICKET),
+    mergeMap(action => ajax({
+            url: `/api/ticket/${action.payload.ticketId}`,
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${state$.value.ticketReducer.jwt}`
+            },
+            body: {
+                ...action.payload.ticket
+            }
+        }).pipe(
+            map(response => {
+                return updateTicketSuccess(action.payload.ticket);
+            }),
+            catchError(err => {
+                return of("uh oh - spaghettios!");
+            })
         )
     )
 );
