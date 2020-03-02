@@ -21,7 +21,7 @@ function TicketCard({ticket, edit}) {
                     {ticket.description}
                 </p>
                 <footer className="">
-                    {ticket.tags.map((t, i) => <span key={i} className="badge badge-pill badge-info">{t.name}</span>
+                    {ticket.tags.map((t, i) => <span key={i} className="badge badge-pill badge-info mr-1">{t.name}</span>
                     )}
                 </footer>
             </div>
