@@ -13,6 +13,7 @@ function TicketCard({ticket, edit}) {
                 </div>
 
                 <h6 className="card-subtitle mb-2 text-muted">
+                    <span>Created at </span>
                     <Moment format="MMMM DD, YYYY">
                         {ticket.createdAt}
                     </Moment>
