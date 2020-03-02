@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import Loading from "../../common/Loading";
-import {deleteTicket, loadTicketOptionData, updateTicket} from "../../store/actions/ticket.actions";
+import {deleteTicket, editTicket, loadTicketOptionData, updateTicket} from "../../store/actions/ticket.actions";
 import TicketForm from "../../common/TicketForm";
 import { useHistory } from "react-router-dom";
 
@@ -10,10 +10,9 @@ function EditTicket(props) {
 
     useEffect(() => {
         props.loadOptionalData();
-        console.log(props.currentTicket);
 
         return () => {
-            // TODO: reset edit state
+            props.editTicket(null);
         };
 
     }, []);
@@ -80,7 +79,8 @@ function mapDispatchToProps(dispatch) {
     return {
         loadOptionalData: () => dispatch(loadTicketOptionData()),
         updateTicker: updatedTicket => dispatch(updateTicket(updatedTicket)),
-        deleteTicket: id => dispatch(deleteTicket(id))
+        deleteTicket: id => dispatch(deleteTicket(id)),
+        editTicket: id => dispatch(editTicket(id))
     };
 
 }
