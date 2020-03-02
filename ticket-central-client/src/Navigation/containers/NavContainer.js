@@ -1,9 +1,16 @@
 import React from 'react';
 import {useAuth0} from "../../Auth/Auth";
+import {connect} from "react-redux";
+import {setJWT} from "../../store/actions/ticket.actions";
 
 function NavContainer(props) {
 
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+    const logoutCleanUp = () => {
+        props.setJWT(null);
+        logout();
+    };
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,7 +35,7 @@ function NavContainer(props) {
                     {
                         isAuthenticated && (
                             <li className="nav-item active">
-                                <a className="nav-link" href="#" onClick={() => logout()}>Logout</a>
+                                <a className="nav-link" href="#" onClick={() => logoutCleanUp()}>Logout</a>
                             </li>
                         )
                     }
@@ -42,5 +49,20 @@ function NavContainer(props) {
         </nav>
     );
 }
+
+// Wire up this component to the store
+function mapStateToProps(state) {
+    return {}
+}
+
+function mapDispatchToProps(dispatch) {
+
+    return {
+        setJWT: token => dispatch(setJWT(token))
+    };
+
+}
+
+NavContainer = connect(mapStateToProps, mapDispatchToProps)(NavContainer);
 
 export default NavContainer;
