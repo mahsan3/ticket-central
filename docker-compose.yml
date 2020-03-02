@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: ticket-central-client
+    image: ticket-central-client
+    build:
+      context: .
+      dockerfile: .docker/nginx.development.dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - node
+
+  node:
+    container_name: ticket-central-api
+    image: ticket-central-api
+    build:
+      context: .
+      dockerfile: .docker/node.development.dockerfile
+    ports:
+      - "3001:3001"
+    env_file:
+      - .docker/env/app.development.env
+    depends_on:
+      - db
+    networks:
+      - tc-network
+
+  db:
+    container_name: ticket-central-mysql
+    image: mysql/mysql-server:8.0
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    env_file:
+      - .docker/env/mysql.development.env
+    ports:
+      - "3306:3306"
+    networks:
+      - tc-network
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+
+networks:
+  tc-network:
+    driver: bridge
