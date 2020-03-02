@@ -23,7 +23,9 @@ function TicketForm(props) {
         setTags(selectedList);
     };
 
-    const removeTicket = () => {};
+    const removeTicket = () => {
+        props.deleteTicket();
+    };
 
     const saveTicket = () => {
 
