@@ -14,13 +14,15 @@ import { ajax } from 'rxjs/ajax';
 import history from "../../utils/history";
 import { toast } from 'react-toastify';
 
+const baseAPIUrl = 'http://localhost:3001';
+
 export const loadTicketsEpic = (action$, state$) => action$.pipe(
     ofType(LOAD_ALL_TICKETS),
     tap(() => {
         console.log(state$.value.ticketReducer.jwt)
     }),
     mergeMap(action => ajax({
-            url: '/api/ticket/all',
+            url: `${baseAPIUrl}/api/ticket/all`,
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${state$.value.ticketReducer.jwt}`
@@ -39,7 +41,7 @@ export const loadTicketsEpic = (action$, state$) => action$.pipe(
 export const loadTicketOptionsEpic = (action$, state$) => action$.pipe(
     ofType(LOAD_TICKET_OPTION_DATA),
     mergeMap(action => ajax({
-            url: '/api/ticket/optional-data',
+            url: `${baseAPIUrl}/api/ticket/optional-data`,
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${state$.value.ticketReducer.jwt}`
@@ -63,7 +65,7 @@ export const updateTicketEpic = (action$, state$) => action$.pipe(
     ofType(UPDATE_TICKET),
     tap(() => toast.info('Saving...')),
     mergeMap(action => ajax({
-            url: `/api/ticket/${action.payload.ticketId}`,
+            url: `${baseAPIUrl}/api/ticket/${action.payload.ticketId}`,
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${state$.value.ticketReducer.jwt}`
@@ -87,7 +89,7 @@ export const deleteTicketEpic = (action$, state$) => action$.pipe(
     ofType(DELETE_TICKET),
     tap(() => toast.info('Deleting...')),
     mergeMap(action => ajax({
-            url: `/api/ticket/${action.payload}`,
+            url: `${baseAPIUrl}/api/ticket/${action.payload}`,
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${state$.value.ticketReducer.jwt}`
@@ -108,7 +110,7 @@ export const createTicketEpic = (action$, state$) => action$.pipe(
     ofType(CREATE_TICKET),
     tap(() => toast.info('Creating...')),
     mergeMap(action => ajax({
-            url: `/api/ticket/new`,
+            url: `${baseAPIUrl}/api/ticket/new`,
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${state$.value.ticketReducer.jwt}`
