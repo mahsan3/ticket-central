@@ -46,6 +46,9 @@ function HomeContainer(props) {
     return (
         <>
             <h1>My Tickets</h1>
+            <button type="button" className="btn btn-success" onClick={() => props.history.push('/new-ticket')}>
+                Add Ticket
+            </button>
             {props.tickets.map(t => <TicketCard ticket={t} key={t.id} edit={editTicket}/>)}
         </>
     );
