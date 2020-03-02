@@ -23,8 +23,22 @@ function TicketForm(props) {
         setTags(selectedList);
     };
 
+    const removeTicket = () => {};
+
+    const saveTicket = () => {
+
+        props.handleSubmit({
+            "title": title,
+            "description": description,
+            "status": status,
+            "assignedTo": assignedTo,
+            "tags": tags.map(t => t.id)
+        });
+
+    };
+
     return (
-        <form className="" onSubmit={props.handleSubmit} autoComplete="off">
+        <form className="" autoComplete="off">
 
             <div className="form-group">
                 <label htmlFor="title">Title</label>
@@ -43,7 +57,7 @@ function TicketForm(props) {
 
             <div className="form-group">
                 <label>Status</label>
-                <select className="form-control">
+                <select className="form-control" onChange={e => setStatus(e.target.value)}>
                     <option>Default select</option>
                     {props.status.map(s => {
                         return <option
@@ -58,7 +72,7 @@ function TicketForm(props) {
 
             <div className="form-group">
                 <label>Assigned To</label>
-                <select className="form-control">
+                <select className="form-control" onChange={e => setAssignedTo(e.target.value)}>
                     <option>Default select</option>
                     {props.users.map(u => {
                         return <option
@@ -82,6 +96,10 @@ function TicketForm(props) {
                 />
             </div>
 
+            <div className="d-flex justify-content-between">
+                <button type="button" className="btn btn-danger" onClick={() => removeTicket()}>Delete</button>
+                <button type="button" className="btn btn-success" onClick={() => saveTicket()}>Save</button>
+            </div>
         </form>
     );
 }
