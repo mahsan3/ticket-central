@@ -5,7 +5,8 @@ import {
     editTicketEpic,
     loadTicketOptionsEpic,
     updateTicketEpic,
-    deleteTicketEpic
+    deleteTicketEpic,
+    createTicketEpic
 } from '../epics/ticket.epic';
 import ticketReducer from "./ticket.reducer";
 
@@ -13,7 +14,8 @@ export const rootEpic = combineEpics(
     loadTicketsEpic,
     loadTicketOptionsEpic,
     updateTicketEpic,
-    deleteTicketEpic
+    deleteTicketEpic,
+    createTicketEpic
     // editTicketEpic
 );
 
