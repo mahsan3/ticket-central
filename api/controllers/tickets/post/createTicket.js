@@ -22,9 +22,9 @@ module.exports = async (req, res, next) => {
         await newTicket.setStatus(req.body.status);
         await newTicket.setTicket_assigned_to(req.body.assignedTo);
         await newTicket.setTicket_creator(req.body.creator);
-        await newTicket.setTags(req.body.tags);
+        await newTicket.setTags(req.body.tags.split(','));
 
-
+        // TODO: set creator id, need to resolve id from email
         console.log(newTicket);
 
         res.json({
