@@ -24,10 +24,10 @@ ReactDOM.render(
     <Provider store={store}>
 
         <Auth0Provider
-            domain={process.env.REACT_APP_AUTH0_DOMAIN}
-            client_id={process.env.REACT_APP_AUTH0_CLIENTID}
-            redirect_uri={process.env.REACT_APP_AUTH0_CALLBACK}
-            audience={process.env.REACT_APP_AUTH0_AUDIENCE}
+            domain={'dev-ttb978df.auth0.com'}
+            client_id={'eKjtvDiuMKEDNsHhFcyjVE5MrKbyEpnB'}
+            redirect_uri={'http://localhost'}
+            audience={'http://localhost:3001'}
             onRedirectCallback={onRedirectCallback}>
 
             <App />
